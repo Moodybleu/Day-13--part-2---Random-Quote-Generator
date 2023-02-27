@@ -1,11 +1,11 @@
-const btn = document.querySelector("get-quotes");
+const btn = document.querySelector(".get-quotes");
 btn.addEventListener("click", getQuotes);
 const number = document.getElementById("number");
 
 function getQuotes(e) {
     e.preventDefault();
 
-    if(number.ariaValueMax.length == 0) {
+    if (number.value.length == 0) {
         return alert("Please enter a number")
     } else {
         const https = new XMLHttpRequest();
@@ -13,6 +13,7 @@ function getQuotes(e) {
     https.onload = function() {
         if (this.status === 200) {
             // console.log(this.responseText);
+
             const response = shuffle(JSON.parse(this.responseText));
 
             let output = "";
@@ -36,10 +37,8 @@ function getQuotes(e) {
             document.querySelector(".quotes").innerHTML = output;
         }
     }
-}
-
-    
     https.send();
+    }  
 }
 
 // FUNCTION TO SHUFFLE QUOTES
